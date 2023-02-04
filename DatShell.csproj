@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BetterFolderBrowser, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\BetterFolderBrowser.1.2.0\lib\BetterFolderBrowser.dll</HintPath>
-    </Reference>
     <Reference Include="Caliburn.Micro, Version=2.0.0.6, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>packages\Caliburn.Micro.Core.2.0.0\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
@@ -50,6 +47,9 @@
     </Reference>
     <Reference Include="ExifLib, Version=1.5.1.0, Culture=neutral, PublicKeyToken=30284005913968db, processorArchitecture=MSIL">
       <HintPath>packages\ExifLib.1.5.1.0\lib\net40\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="GleamTech.Common, Version=5.5.0.0, Culture=neutral, PublicKeyToken=a05198837413a6d8, processorArchitecture=MSIL">
+      <HintPath>packages\GleamTech.Common.5.5.5\lib\net461\GleamTech.Common.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis, Version=1.8.1.31687, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Google.Apis.1.8.1\lib\net40\Google.Apis.dll</HintPath>

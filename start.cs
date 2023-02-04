@@ -21,7 +21,6 @@ namespace DatShell
 
         private void start_Load(object sender, EventArgs e)
         {
-            this.StartPosition = FormStartPosition.Manual;
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
             string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
@@ -29,13 +28,20 @@ namespace DatShell
             {
                 this.BackColor = Color.FromArgb(49, 49, 49);
                 label1.ForeColor = Color.FromArgb(255, 255, 255);
+                label2.ForeColor = Color.FromArgb(255, 255, 255);
             }
             else
             {
                 this.BackColor = Color.FromArgb(255, 255, 255);
                 label1.ForeColor = Color.FromArgb(0, 0, 0);
+                label2.ForeColor = Color.FromArgb(0, 0, 0);
             }
             label1.Text = "Welcome, " + Environment.UserName.ToString();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
