@@ -22,6 +22,18 @@ namespace DatShell
 
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            switch (e.CloseReason)
+            {
+                case CloseReason.UserClosing:
+                    e.Cancel = true;
+                    break;
+            }
+
+            base.OnFormClosing(e);
+        }
+
         System.Timers.Timer myTimer = new System.Timers.Timer(1000);
         private void Form1_Load(object sender, EventArgs e)
         {
