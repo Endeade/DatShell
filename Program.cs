@@ -18,19 +18,21 @@ namespace DatShell
         [STAThread]
         static void Main()
         {
-            Process.Start("C:\\Windows\\System32\\taskkill.exe", "/f /im explorer.exe");
             Application.EnableVisualStyles();
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
             if (checkthemeing != null)
             {
-                Application.Run(form1);
+                
             }
             else
             {
                 hkcu.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-                Application.Run(form1);
             }
+            Process.Start("Properties.Resources.ncmdc", "win hide class Shell_TrayWnd");
+            Process.Start("cmd.exe", "/c taskkill /f /im explorer.exe");
+            Process.Start("explorer.exe");
+            Application.Run(form1);
         }
     }
 }

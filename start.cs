@@ -31,6 +31,8 @@ namespace DatShell
                 label1.ForeColor = Color.FromArgb(255, 255, 255);
                 label2.ForeColor = Color.FromArgb(255, 255, 255);
                 groupBox1.ForeColor = Color.FromArgb(255, 255, 255);
+                button4.ForeColor = Color.FromArgb(0, 0, 0);
+                button5.ForeColor = Color.FromArgb(0, 0, 0);
             }
             else
             {
@@ -38,6 +40,8 @@ namespace DatShell
                 label1.ForeColor = Color.FromArgb(0, 0, 0);
                 label2.ForeColor = Color.FromArgb(0, 0, 0);
                 groupBox1.ForeColor = Color.FromArgb(0, 0, 0);
+                button4.ForeColor = Color.FromArgb(255, 255, 255);
+                button5.ForeColor = Color.FromArgb(255, 255, 255);
             }
             label1.Text = "Welcome, " + Environment.UserName.ToString();
         }
