@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Net;
+using System.IO;
 
 namespace DatShell
 {
@@ -29,9 +31,20 @@ namespace DatShell
             {
                 hkcu.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
             }
-            Process.Start("Properties.Resources.ncmdc", "win hide class Shell_TrayWnd");
-            Process.Start("cmd.exe", "/c taskkill /f /im explorer.exe");
-            Process.Start("explorer.exe");
+            if (Directory.Exists("C:\\Windows\\datshell-utils"))
+            {
+                Process.Start("C:\\Windows\\datshell-utils\\ncmdc.exe", "win hide class Shell_TrayWnd");
+            } else
+            {
+                Directory.CreateDirectory("C:\\Windows\\datshell-utils");
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile("https://github.com/Endeade/DatShell/raw/main/ncmdc.exe", "C:\\Windows\\datshell-utils\\ncmdc.exe");
+                }
+                Process.Start("C:\\Windows\\datshell-utils\\ncmdc.exe", "win hide class Shell_TrayWnd");
+            }
             Application.Run(form1);
         }
     }
