@@ -57,11 +57,11 @@ namespace DatShell
                 label1.ForeColor = Color.FromArgb(0, 0, 0);
                 pictureBox1.Image = Properties.Resources.light;
             }
-            label1.Text = DateTime.Now.ToString("    h:mm:ss tt\nddd, d/M/yyyy");
+            label1.Text = DateTime.Now.ToString("HH:mm:ss\nyyyy-MM-dd");
             var timer = new System.Windows.Forms.Timer {Interval = 1000};
             timer.Tick += (o, args) =>
             {
-                label1.Text = DateTime.Now.ToString("    h:mm:ss tt\nddd, d/M/yyyy");
+                label1.Text = DateTime.Now.ToString("HH:mm:ss\nyyyy-MM-dd");
             };
             timer.Start();
         }
