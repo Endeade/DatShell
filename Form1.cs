@@ -1,24 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using static System.Windows.Forms.Timer;
 
 namespace DatShell
 {
-    public partial class Form1 : Form
+	public partial class Form1 : Form
     {
-
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        IntPtr taskbar = IntPtr.Zero;
         public Form1()
         {
             InitializeComponent();
+            taskbar = FindWindow("Shell_TrayWnd", null);
+            if (taskbar != IntPtr.Zero)
+            {
+                ShowWindow(taskbar, 0);
+            }
 
         }
 
@@ -30,7 +32,7 @@ namespace DatShell
                     e.Cancel = true;
                     break;
             }
-
+            ShowWindow(taskbar, 5);
             base.OnFormClosing(e);
         }
 
@@ -45,7 +47,13 @@ namespace DatShell
             this.Size = new Size(formSize.Width, 50);
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-            string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+            string lighttheme = "0";
+
+            try
+			{
+                lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+            }
+            catch { }
             if (lighttheme == "0")
             {
                 this.BackColor = Color.FromArgb(49, 49, 49);

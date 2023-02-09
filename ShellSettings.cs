@@ -25,7 +25,12 @@ namespace DatShell
         {
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-            string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+            string lighttheme = "0";
+            try
+            {
+                lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+            }
+			catch { }
             if (lighttheme == "0")
             {
                 this.BackColor = Color.FromArgb(49, 49, 49);
@@ -55,30 +60,38 @@ namespace DatShell
         {
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-            string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
-            if (lighttheme == "0")
+            try
             {
-                checkthemeing.SetValue("SystemUsesLightTheme", "1");
+                string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+                if (lighttheme == "0")
+                {
+                    checkthemeing.SetValue("SystemUsesLightTheme", "1");
+                }
+                else
+                {
+                    MessageBox.Show("Light theme is already set.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Light theme is already set.");
-            }
+            catch { }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-            string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
-            if (lighttheme == "1")
+            try
             {
-                checkthemeing.SetValue("SystemUsesLightTheme", "0");
+                string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+                if (lighttheme == "1")
+                {
+                    checkthemeing.SetValue("SystemUsesLightTheme", "0");
+                }
+                else
+                {
+                    MessageBox.Show("Dark theme is already set.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Dark theme is already set.");
-            }
+			catch { }
         }
     }
 }
