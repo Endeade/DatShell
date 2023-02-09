@@ -24,7 +24,12 @@ namespace DatShell
         {
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
-            string lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+            string lighttheme = "0";
+            try
+            {
+                lighttheme = checkthemeing.GetValue("SystemUsesLightTheme").ToString();
+            }
+			catch { }
             if (lighttheme == "0")
             {
                 this.BackColor = Color.FromArgb(49, 49, 49);
