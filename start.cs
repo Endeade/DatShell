@@ -25,7 +25,7 @@ namespace DatShell
             if (Environment.OSVersion.Version.Build < 10240)
             {
                 button1.Text = "Control Panel";
-                button8.Hide();
+                button6.Hide();
             }
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
