@@ -22,6 +22,10 @@ namespace DatShell
 
         private void start_Load(object sender, EventArgs e)
         {
+            if (Environment.OSVersion.Version.Build < 10240)
+            {
+                button1.Text = "Control Panel";
+            }
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
             string lighttheme = "0";
@@ -58,7 +62,13 @@ namespace DatShell
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Process.Start("ms-settings://");
+            if (Environment.OSVersion.Version.Build < 10240)
+            {
+                Process.Start("control.exe");
+            } else
+            {
+                Process.Start("ms-settings://");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
