@@ -25,6 +25,7 @@ namespace DatShell
             if (Environment.OSVersion.Version.Build < 10240)
             {
                 button1.Text = "Control Panel";
+                button8.Hide();
             }
             RegistryKey hkcu = Registry.CurrentUser;
             RegistryKey checkthemeing = hkcu.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
@@ -90,6 +91,16 @@ namespace DatShell
         private void button5_Click(object sender, EventArgs e)
         {
             Process.Start("cmd.exe", "/c shutdown /r /t 0");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Process.Start("control.exe");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Process.Start("logoff.exe");
         }
     }
 }
